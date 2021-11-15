@@ -5,7 +5,7 @@
 
 /**
  * @brief 读取文件信息，返回 string 字符串
- * @author 范竞杨
+ * @author 范竞扬
  * 
  * @param filename 
  * @return string 
@@ -14,7 +14,7 @@ string readFromFile(const string &filename);
 
 /**
  * @brief 获取字符串字符的频率序列
- * @author 范竞杨
+ * @author 范竞扬
  * 
  * @param words 字符串
  * @return map<char, int> 频率序列
@@ -23,7 +23,7 @@ map<char, int> getFrequency(string& words);
 
 /**
  * @brief 编码文件中的字符串
- * @author 范竞杨
+ * @author 范竞扬
  * 
  * @param words 字符串
  * @param code 编码表
@@ -70,7 +70,7 @@ string decodingFile(const string &zipFile, const string& codeFile);
 
 /**
  * @brief 将字符串写入文件
- * @author 范竞杨
+ * @author 范竞扬
  * 
  * @param filename 写入文件名
  * @param data 数据
