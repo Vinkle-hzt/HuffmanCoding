@@ -16,7 +16,8 @@ using std::map;
 class HuffmanTreeNode
 {
     public:
-    
+        HuffmanTreeNode(int freq, HuffmanTreeNode* left, HuffmanTreeNode* right);
+
     private:
         char data;
         int frequency;
