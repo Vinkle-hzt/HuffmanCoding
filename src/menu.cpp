@@ -2,7 +2,12 @@
 
 using namespace std;
 
-void showMenu()
+/**
+ * @brief 展示选择菜单
+ * @author 王玉涵
+ * 
+ */
+static void showMenu()
 {
     cout << "hello world" << endl;
 }
