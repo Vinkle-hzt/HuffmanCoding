@@ -29,7 +29,7 @@ map<char, int> getFrequency(string& words);
  * @param code 编码表
  * @return string 编码后的01串
  */
-string encodingString(const string &words, const map<char, string> &code);
+string encodingString(const string &words, map<char, string> &code);
 
 /**
  * @brief 将编码写入文件中
@@ -38,7 +38,7 @@ string encodingString(const string &words, const map<char, string> &code);
  * @param filename 文件名
  * @param code 编码表
  */
-void writeCode(const string &filename, const map<char, string> &code);
+void writeCode(const string &filename, map<char, string> &code);
 
 /**
  * @brief 读取编码文件
@@ -56,7 +56,7 @@ map<string, char> readCode(const string &filename);
  * @param filename 文件名
  * @param code 编码表
  */
-void writeToBinary(const string &filename, const map<char, string> &code);
+void writeToBinary(const string &filename, map<char, string> &code);
 
 /**
  * @brief 解码二进制压缩文件
