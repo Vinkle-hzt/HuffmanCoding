@@ -50,13 +50,23 @@ void writeCode(const string &filename, map<char, string> &code);
 map<string, char> readCode(const string &filename);
 
 /**
+ * @brief 根据字典，将txt文本转成01字符串
+ * @author 陈超林
+ * 
+ * @param sourceText 源文件内容
+ * @param code 编码表
+ * @return string 
+ */
+string get01Text(const string &sourceText, map<char, string> &code);
+
+/**
  * @brief 将文件压缩后写入二进制文件
  * @author 陈超林
  * 
  * @param filename 文件名
  * @param code 编码表
  */
-void writeToBinary(const string &filename, map<char, string> &code);
+    void writeToBinary(const string &filename, map<char, string> &code);
 
 /**
  * @brief 解码二进制压缩文件
