@@ -1,6 +1,31 @@
 #include "fileIO.h"
 using namespace std;
 
+string readFromFile(const string &filename)
+{
+    return "";
+}
+
+map<char, int> getFrequency(string &words)
+{
+    return {};
+}
+
+string encodingString(const string &words, map<char, string> &code)
+{
+    return "";
+}
+
+void writeCode(const string &filename, map<char, string> &code)
+{
+
+}
+
+map<string, char> readCode(const string &filename)
+{
+    return {};
+}
+
 string get01Text(const string &sourceText, map<char, string> &code)
 {
     string result;
@@ -73,4 +98,9 @@ string decodingFile(const string &zipFile, const string &codeFile)
         }
     }
     return result;
+}
+
+void writeToFile(const string &filename, const string &data)
+{
+
 }
