@@ -50,6 +50,7 @@ HuffmanTree::HuffmanTree(map<char, int> &data)
         q.push(n3);
     }
     root = q.top();
+    q.pop();
     encode();
 }
 
