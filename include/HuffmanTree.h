@@ -10,7 +10,7 @@ using std::string;
 using std::vector;
 
 /**
- * @brief 
+ * @brief 哈夫曼树节点结构
  * @author 胡泽涛
  * 
  */
@@ -28,7 +28,7 @@ struct HuffmanTreeNode
 };
 
 /**
- * @brief 
+ * @brief 哈夫曼树
  * @author 胡泽涛
  * 
  */

@@ -3,22 +3,39 @@ using namespace std;
 
 string readFromFile(const string &filename)
 {
-    return "";
+    ifstream ifile;
+    string s;
+    char ch;
+
+    ifile.open(filename);
+    while (ifile.read(&ch, 1))
+        s.push_back(ch);
+
+    ifile.close();
+
+    return s;
 }
 
 map<char, int> getFrequency(string &words)
 {
-    return {};
+    map<char, int> f;
+    for (char c : words)
+        f[c]++;
+    return f;
 }
 
 string encodingString(const string &words, map<char, string> &code)
 {
-    return "";
+    string binwords;
+
+    for (auto const word : words)
+        binwords.append(code[word]);
+
+    return binwords;
 }
 
 void writeCode(const string &filename, map<char, string> &code)
 {
-
 }
 
 map<string, char> readCode(const string &filename)
@@ -39,7 +56,8 @@ string get01Text(const string &sourceText, map<char, string> &code)
 
 void writeToBinary(const string &filename, map<char, string> &code)
 {
-    ofstream outFile("testOutput.huf", ios::out | ios::binary);
+    string binaryName = filename + ".huf";
+    ofstream outFile(binaryName, ios::out | ios::binary);
     int index = 0;
     string codeText = get01Text(readFromFile(filename), code);
     unsigned char remain = codeText.length() % 8;
@@ -102,5 +120,9 @@ string decodingFile(const string &zipFile, const string &codeFile)
 
 void writeToFile(const string &filename, const string &data)
 {
+    ofstream ofile;
 
+    ofile.open(filename);
+    ofile.write(data.c_str(), data.length());
+    ofile.close();
 }
