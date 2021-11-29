@@ -36,11 +36,26 @@ string encodingString(const string &words, map<char, string> &code)
 
 void writeCode(const string &filename, map<char, string> &code)
 {
+    ofstream os(filename);
+    for (auto i : code)
+        os << i.first << " " << i.second << '\n';
 }
 
 map<string, char> readCode(const string &filename)
 {
-    return {};
+    ifstream inFile(filename);
+    map<string, char> result;
+    if (!inFile)
+        return result;
+    char ch;
+    string chCode;
+    while (inFile.read(&ch, 1))
+    {
+        inFile >> chCode;
+        result[chCode] = ch;
+        inFile.read(&ch, 1);
+    }
+    return result;
 }
 
 string get01Text(const string &sourceText, map<char, string> &code)
