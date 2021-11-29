@@ -1,28 +1,30 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <queue>
 #include <map>
 
-using std::vector;
+using std::map;
 using std::pair;
 using std::string;
-using std::map;
+using std::vector;
 
 /**
  * @brief 
  * @author 胡泽涛
  * 
  */
-class HuffmanTreeNode
+struct HuffmanTreeNode
 {
-    public:
-        HuffmanTreeNode(int freq, HuffmanTreeNode* left, HuffmanTreeNode* right);
+    HuffmanTreeNode(HuffmanTreeNode *left, HuffmanTreeNode *right);
+    HuffmanTreeNode(char data, int freq);
 
-    private:
-        char data;
-        int frequency;
-        HuffmanTreeNode* left;
-        HuffmanTreeNode* right;
+    bool isLeaf() const;
+
+    char data;
+    int freq;
+    HuffmanTreeNode *left;
+    HuffmanTreeNode *right;
 };
 
 /**
@@ -33,9 +35,15 @@ class HuffmanTreeNode
 class HuffmanTree
 {
 private:
-    /*
-    */
-   map<char, string> code;
+    using node = HuffmanTreeNode;
+
+    node *root;
+    map<char, string> code;
+
+    void encode();
+    void encodeHelp(node *cur, string &pattern);
+    void clear(node* cur);
+
 public:
     HuffmanTree(map<char, int> &data);
     ~HuffmanTree();
@@ -46,5 +54,5 @@ public:
      * @return map<char, string> huffman code like
      *        {<'a', "00">, <'b', "01">, <'c', "1">}
      */
-    const map<char, string>& getCoding() const;
+    map<char, string> &getCoding();
 };
