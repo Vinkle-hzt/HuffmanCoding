@@ -8,4 +8,4 @@ data.hug 文件是二进制的压缩文件
 
 下面是压缩文件的编码规范：
 
-![code](C:\code\dataStruct\HuffmanCoding\example\code.png)
+![code](code.png)
