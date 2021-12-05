@@ -7,6 +7,7 @@ enable_testing()
 file(COPY file/f1.txt DESTINATION ${PROJECT_BINARY_DIR})
 file(COPY file/f2.txt DESTINATION ${PROJECT_BINARY_DIR})
 file(COPY file/f3.txt DESTINATION ${PROJECT_BINARY_DIR})
+file(COPY file/final.txt DESTINATION ${PROJECT_BINARY_DIR})
 
 add_subdirectory(src)
 add_subdirectory(test)

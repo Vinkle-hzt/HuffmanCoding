@@ -8,6 +8,9 @@ string readFromFile(const string &filename)
     char ch;
 
     ifile.open(filename);
+    if (!ifile)
+        throw "can't open file!";
+
     while (ifile.read(&ch, 1))
         s.push_back(ch);
 
@@ -37,6 +40,8 @@ string encodingString(const string &words, map<char, string> &code)
 void writeCode(const string &filename, map<char, string> &code)
 {
     ofstream os(filename);
+    if (!os)
+        throw "can't open file!";
     for (auto i : code)
         os << i.first << " " << i.second << '\n';
 }
@@ -46,7 +51,7 @@ map<string, char> readCode(const string &filename)
     ifstream inFile(filename);
     map<string, char> result;
     if (!inFile)
-        return result;
+        throw "can't open file!";
     char ch;
     string chCode;
     while (inFile.read(&ch, 1))
@@ -99,7 +104,8 @@ string decodingFile(const string &zipFile, const string &codeFile)
     map<string, char> codeMap = readCode(codeFile);
     ifstream inFile(zipFile, ios::in | ios::binary);
     if (!inFile)
-        return "";
+        throw "can't open file!";
+
     char ch, remain;
     string code01;
     inFile.read(&remain, 1);

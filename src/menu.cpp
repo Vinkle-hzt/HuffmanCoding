@@ -3,21 +3,105 @@
 using namespace std;
 
 /**
- * @brief å±•ç¤ºé€‰æ‹©èœå•
- * @author ç‹ç‰æ¶µ
+ * @brief Õ¹Ê¾Ñ¡Ôñ²Ëµ¥
+ * @author ÍõÓñº­
  * 
  */
 static void showMenu()
 {
-    cout << "hello world" << endl;
+    cout << "**************************************************************" << endl;
+    cout << "²Ù×÷ÃüÁîËµÃ÷£º" << endl;
+    cout << "Í³¼ÆÊäÈëÎÄ¼ş×Ö·ûÆµ¶È²¢¶Ô×Ö·û¼¯±àÂë²¢Êä³öÖÁÎÄ¼ş£¨»ù±¾ÒªÇó£©£º 1" << endl;
+    cout << "  ¶ÔÕû¸öÎÄ¼ş±àÂë²¢±£´æ±àÂë½á¹ûµ½Ò»¸ö¶ş½øÖÆÎÄ¼ş£¨ÖĞ¼¶ÒªÇó£©£º 2" << endl;
+    cout << "          ÎÄ¼ş½âÂë²¢½«½âÂë½á¹û±£´æÎªÒ»ÎÄ±¾ÎÄ¼ş£¨¸ß¼¶ÒªÇó£©£º 3" << endl;
+    cout << "                                                     ÍË³ö £º 4" << endl;
+    cout << "**************************************************************" << endl;
 }
 
 void startMenu()
 {
-    bool exitFlag = false;
-    while (!exitFlag)
+    cout << "**************************************************************" << endl;
+    cout << "                     »¶Ó­Ê¹ÓÃhuffman±àÂëÆ÷                    " << endl;
+    cout << "**************************************************************" << endl;
+
+    char option;
+    string filename;
+    string words;
+    map<char, int> freq;
+    map<char, string> coding;
+    string decode_result;
+    HuffmanTree *ht = nullptr;
+    string huf_file;
+
+    do
     {
+        cout << endl;
         showMenu();
-        exitFlag =true;
-    }
+        cout << endl
+             << "$$ ";
+        cin >> option;
+        try
+        {
+            switch (option)
+            {
+            case '1':
+                cout << "ÇëÊäÈëÎÄ¼şÃû£º";
+                cin >> filename;
+                words = readFromFile(filename);
+                freq = getFrequency(words);
+                cout << filename << "ÎÄ¼ş×Ö·û¼¯Æµ¶È£º" << endl;
+                for (auto i : freq)
+                    cout << i.first << " " << i.second << endl;
+                ht = new HuffmanTree(freq);
+                coding = ht->getCoding();
+                cout << '\n'
+                     << filename << "ÎÄ¼ş×Ö·û¼¯±àÂë£º" << endl;
+                for (auto i : coding)
+                    cout << i.first << " " << i.second << endl;
+                writeCode(filename + ".code", coding);
+                cout << filename << "×Ö·û¼¯±àÂëÒÑĞ´Èë" << filename << ".codeÖĞ" << endl;
+                break;
+            case '2':
+                if (!ht)
+                {
+                    cout << "ÇëÏÈ½øĞĞ×Ö·û¼¯±àÂë²Ù×÷£¡" << endl;
+                    break;
+                }
+                writeToBinary(filename, coding);
+                cout << filename << "¶ş½øÖÆ±àÂë: \n"
+                     << get01Text(words, coding) << endl;
+                cout << '\n'
+                     << "¶ş½øÖÆ±àÂë½á¹ûÒÑ±£´æµ½" << filename << ".hufÖĞ" << endl;
+                break;
+            case '3':
+                cout << "ÇëÊäÈëĞèÒª½âÂëµÄ.hufÎÄ¼ş£º";
+                cin >> huf_file;
+                if (huf_file.substr(huf_file.size() - 4, 4) != ".huf")
+                {
+                    cout << "ÎÄ¼ş²»ÊÇ.hufÎÄ¼ş" << endl;
+                    continue;
+                }
+                decode_result = decodingFile(huf_file, huf_file.substr(0, huf_file.size() - 4) + ".code");
+                writeToFile(filename + ".result", decode_result);
+                cout << "½âÂë½á¹û:\n"
+                     << decode_result << endl;
+                cout << '\n'
+                     << "½âÂë½á¹ûÒÑ±£´æµ½" << filename << ".result" << endl;
+                break;
+            case '4':
+                cout << "ÔÙ¼û :)" << endl;
+                break;
+            default:
+                cout << "·Ç·¨ÊäÈë" << endl;
+                break;
+            }
+        }
+        catch (const char *err)
+        {
+            cerr << err << endl;
+        }
+        cin.clear();
+        cin.sync();
+        system("pause");
+    } while (option != '4');
 }
