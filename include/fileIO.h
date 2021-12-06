@@ -65,8 +65,9 @@ string get01Text(const string &sourceText, map<char, string> &code);
  * 
  * @param filename 文件名
  * @param code 编码表
+ * @return double 压缩率
  */
-    void writeToBinary(const string &filename, map<char, string> &code);
+double writeToBinary(const string &filename, map<char, string> &code);
 
 /**
  * @brief 解码二进制压缩文件

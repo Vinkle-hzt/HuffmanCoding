@@ -74,12 +74,15 @@ string get01Text(const string &sourceText, map<char, string> &code)
     return result;
 }
 
-void writeToBinary(const string &filename, map<char, string> &code)
+double writeToBinary(const string &filename, map<char, string> &code)
 {
     string binaryName = filename + ".huf";
     ofstream outFile(binaryName, ios::out | ios::binary);
     int index = 0;
-    string codeText = get01Text(readFromFile(filename), code);
+    string words = readFromFile(filename);
+    string codeText = get01Text(words, code);
+    int original_byte = words.size();
+    int output_byte = 1;
     unsigned char remain = codeText.length() % 8;
     outFile.write((char *)(&remain), 1);
     for (int j = 0; j < 8 - remain; j++)
@@ -95,8 +98,10 @@ void writeToBinary(const string &filename, map<char, string> &code)
             ++index;
         }
         outFile.write((char *)&byte, 1);
+        output_byte++;
     }
     outFile.close();
+    return (double)output_byte / original_byte;
 }
 
 string decodingFile(const string &zipFile, const string &codeFile)

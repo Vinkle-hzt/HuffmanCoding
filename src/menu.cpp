@@ -32,7 +32,7 @@ void startMenu()
     string decode_result;
     HuffmanTree *ht = nullptr;
     string huf_file;
-
+    double zip;
     do
     {
         cout << endl;
@@ -67,9 +67,10 @@ void startMenu()
                     cout << "请先进行字符集编码操作！" << endl;
                     break;
                 }
-                writeToBinary(filename, coding);
+                zip = writeToBinary(filename, coding);
                 cout << filename << "二进制编码: \n"
                      << get01Text(words, coding) << endl;
+                cout << "\n压缩率为" << zip * 100 << "%\n";
                 cout << '\n'
                      << "二进制编码结果已保存到" << filename << ".huf中" << endl;
                 break;
